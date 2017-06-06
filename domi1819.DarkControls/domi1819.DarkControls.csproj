@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{555C18DB-450D-4E40-88AD-EA51EF8B5E06}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>domi1819.DarkControls</RootNamespace>
+    <AssemblyName>domi1819.DarkControls</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ColorChangedEventArgs.cs" />
+    <Compile Include="DarkButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DarkCheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DarkPainting.cs" />
+    <Compile Include="DarkColorView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DarkColorView.Designer.cs">
+      <DependentUpon>DarkColorView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DarkForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DarkProgressBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DarkProgressBar.Designer.cs">
+      <DependentUpon>DarkProgressBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DarkTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DarkTextBox.designer.cs">
+      <DependentUpon>DarkTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HexConversion.cs" />
+    <Compile Include="IGlowComponent.cs" />
+    <Compile Include="ColoredBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ColoredBox.Designer.cs">
+      <DependentUpon>ColoredBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DarkKeyBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DarkKeyBox.Designer.cs">
+      <DependentUpon>DarkKeyBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DarkColorView.resx">
+      <DependentUpon>DarkColorView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DarkProgressBar.resx">
+      <DependentUpon>DarkProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DarkTextBox.resx">
+      <DependentUpon>DarkTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DarkKeyBox.resx">
+      <DependentUpon>DarkKeyBox.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
