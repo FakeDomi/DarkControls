@@ -62,8 +62,6 @@ namespace domi1819.DarkControls
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            base.OnPaint(e);
-
             ControlPaint.DrawBorder(e.Graphics, this.DisplayRectangle, DarkPainting.Border, ButtonBorderStyle.Solid);
         }
 

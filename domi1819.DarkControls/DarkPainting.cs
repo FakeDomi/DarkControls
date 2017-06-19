@@ -78,5 +78,15 @@ namespace domi1819.DarkControls
         {
             ControlPaint.DrawBorder(graphics, rectangle, Border, ButtonBorderStyle.Solid);
         }
+
+        public static void DrawBorder(Graphics graphics, Rectangle rectangle, Color color)
+        {
+            ControlPaint.DrawBorder(graphics, rectangle, color, ButtonBorderStyle.Solid);
+        }
+
+        public static void FillBackground(Graphics graphics, Control control, bool hover)
+        {
+            graphics.FillRectangle(BackgroundBrush(hover), control.DisplayRectangle);
+        }
     }
 }

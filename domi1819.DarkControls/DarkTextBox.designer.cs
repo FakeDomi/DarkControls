@@ -37,7 +37,7 @@
             this.textBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox.Location = new System.Drawing.Point(4, 3);
             this.textBox.Name = "textBox";
-            this.textBox.Size = new System.Drawing.Size(93, 13);
+            this.textBox.Size = new System.Drawing.Size(92, 13);
             this.textBox.TabIndex = 0;
             // 
             // DarkTextBox

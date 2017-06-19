@@ -1,68 +1,31 @@
-﻿using System;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace domi1819.DarkControls
 {
-    public sealed class DarkButton : Button, IGlowComponent
+    public class DarkButton : BaseControl, IButtonControl
     {
-        protected override bool ShowFocusCues => false;
-
-        public DarkButton()
-        {
-            this.ForeColor = DarkPainting.Foreground;
-            this.BackColor = DarkPainting.Control;
-            this.FlatStyle = FlatStyle.Flat;
-
-            this.FlatAppearance.BorderSize = 0;
-            this.FlatAppearance.MouseOverBackColor = DarkPainting.ControlHighlight;
-            this.FlatAppearance.MouseDownBackColor = DarkPainting.ControlHighlight;
-        }
-
+        /// <summary>Raises the <see cref="E:System.Windows.Forms.Control.Paint" /> event.</summary>
+        /// <param name="e">A <see cref="T:System.Windows.Forms.PaintEventArgs" /> that contains the event data. </param>
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
 
-            DarkPainting.DrawBorder(e.Graphics, this.DisplayRectangle);
+            DarkPainting.DrawText(e.Graphics, this.Text, this.DisplayRectangle);
         }
 
-        #region GlowComponent
-
-        public int GlowX => this.Location.X + this.DisplayRectangle.X;
-
-        public int GlowY => this.Location.Y + this.DisplayRectangle.Y;
-
-        public int GlowW => this.DisplayRectangle.Width;
-
-        public int GlowH => this.DisplayRectangle.Height;
-
-        protected override void OnMouseEnter(EventArgs e)
+        /// <summary>Notifies a control that it is the default button so that its appearance and behavior is adjusted accordingly.</summary>
+        /// <param name="value">true if the control should behave as a default button; otherwise false. </param>
+        public void NotifyDefault(bool value)
         {
-            base.OnMouseEnter(e);
-
-            DarkForm.UpdateGlow(false, this, true);
         }
 
-        protected override void OnMouseLeave(EventArgs e)
+        /// <summary>Generates a <see cref="E:System.Windows.Forms.Control.Click" /> event for the control.</summary>
+        public void PerformClick()
         {
-            base.OnMouseLeave(e);
-
-            DarkForm.UpdateGlow(false, this, false);
         }
 
-        protected override void OnGotFocus(EventArgs e)
-        {
-            base.OnGotFocus(e);
-
-            DarkForm.UpdateGlow(true, this, true);
-        }
-
-        protected override void OnLostFocus(EventArgs e)
-        {
-            base.OnLostFocus(e);
-
-            DarkForm.UpdateGlow(true, this, false);
-        }
-
-        #endregion
+        /// <summary>Gets or sets the value returned to the parent form when the button is clicked.</summary>
+        /// <returns>One of the <see cref="T:System.Windows.Forms.DialogResult" /> values.</returns>
+        public DialogResult DialogResult { get; set; }
     }
 }

@@ -4,12 +4,10 @@ using System.Windows.Forms;
 
 namespace domi1819.DarkControls
 {
-    public sealed partial class DarkColorView : UserControl, IGlowComponent
+    public class DarkColorView : BaseControl
     {
         private static readonly Rectangle PreviewRectangle = new Rectangle(4, 4, 15, 15);
         private readonly ColorDialog colorDialog = new ColorDialog();
-
-        private bool hover;
 
         private Color color;
         private Brush brush;
@@ -39,36 +37,37 @@ namespace domi1819.DarkControls
             }
         }
 
-        public event EventHandler ColorSelected;
+        /// <summary>Gets the default size of the control.</summary>
+        /// <returns>The default <see cref="T:System.Drawing.Size" /> of the control.</returns>
+        protected override Size DefaultSize => new Size(125, 23);
+
+        public event EventHandler<ColorSelectedEventArgs> ColorSelected;
 
         public DarkColorView()
         {
-            this.InitializeComponent();
-
-            this.DoubleBuffered = true;
             this.Color = DarkPainting.StrongColor;
-
-            this.colorDialog.CustomColors = new[] { ColorTranslator.ToOle(DarkPainting.StrongColor) };
         }
 
+        /// <summary>Raises the <see cref="E:System.Windows.Forms.Control.Paint" /> event.</summary>
+        /// <param name="e">A <see cref="T:System.Windows.Forms.PaintEventArgs" /> that contains the event data. </param>
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
 
-            e.Graphics.FillRectangle(DarkPainting.BackgroundBrush(this.hover), this.DisplayRectangle);
             DarkPainting.DrawText(e.Graphics, this.drawText, this.DisplayRectangle);
-            DarkPainting.DrawBorder(e.Graphics, this.DisplayRectangle);
 
             e.Graphics.FillRectangle(this.brush, PreviewRectangle);
             DarkPainting.DrawBorder(e.Graphics, PreviewRectangle);
         }
 
+        /// <summary>Raises the <see cref="E:System.Windows.Forms.Control.Click" /> event.</summary>
+        /// <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data. </param>
         protected override void OnClick(EventArgs e)
         {
             if (this.colorDialog.ShowDialog(this) == DialogResult.OK)
             {
                 this.Color = this.colorDialog.Color;
-                this.ColorSelected?.Invoke(this, EventArgs.Empty);
+                this.ColorSelected?.Invoke(this, new ColorSelectedEventArgs(this.Color));
             }
         }
 
@@ -77,49 +76,5 @@ namespace domi1819.DarkControls
             this.drawText = $"{this.customText ?? ""}{this.color.ToHexString()}";
             this.Invalidate();
         }
-
-        #region GlowComponent
-
-        public int GlowX => this.Location.X + this.DisplayRectangle.X;
-
-        public int GlowY => this.Location.Y + this.DisplayRectangle.Y;
-
-        public int GlowW => this.DisplayRectangle.Width;
-
-        public int GlowH => this.DisplayRectangle.Height;
-
-        protected override void OnGotFocus(EventArgs e)
-        {
-            base.OnGotFocus(e);
-
-            DarkForm.UpdateGlow(true, this, true);
-        }
-
-        protected override void OnLostFocus(EventArgs e)
-        {
-            base.OnLostFocus(e);
-
-            DarkForm.UpdateGlow(true, this, false);
-        }
-
-        protected override void OnMouseEnter(EventArgs e)
-        {
-            base.OnMouseEnter(e);
-
-            this.hover = true;
-            DarkForm.UpdateGlow(false, this, true);
-            this.Invalidate();
-        }
-
-        protected override void OnMouseLeave(EventArgs e)
-        {
-            base.OnMouseLeave(e);
-
-            this.hover = false;
-            DarkForm.UpdateGlow(false, this, false);
-            this.Invalidate();
-        }
-
-        #endregion
     }
 }

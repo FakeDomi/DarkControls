@@ -30,34 +30,42 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ColorChangedEventArgs.cs" />
+    <Compile Include="BaseControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ColorSelectedEventArgs.cs" />
     <Compile Include="DarkButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DarkCheckBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DarkPainting.cs" />
     <Compile Include="DarkColorView.cs">
-      <SubType>UserControl</SubType>
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DarkColorView.Designer.cs">
-      <DependentUpon>DarkColorView.cs</DependentUpon>
+    <Compile Include="DarkKeyBox.cs">
+      <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DarkPainting.cs" />
     <Compile Include="DarkForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DarkProgressBar.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DarkProgressBar.Designer.cs">
-      <DependentUpon>DarkProgressBar.cs</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="DarkTextBox.cs">
       <SubType>UserControl</SubType>
@@ -65,34 +73,20 @@
     <Compile Include="DarkTextBox.designer.cs">
       <DependentUpon>DarkTextBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="DarkTextbox2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TextBoxDesigner.cs" />
     <Compile Include="HexConversion.cs" />
     <Compile Include="IGlowComponent.cs" />
-    <Compile Include="ColoredBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ColoredBox.Designer.cs">
-      <DependentUpon>ColoredBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DarkKeyBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DarkKeyBox.Designer.cs">
-      <DependentUpon>DarkKeyBox.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ColoredBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DarkColorView.resx">
-      <DependentUpon>DarkColorView.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DarkProgressBar.resx">
-      <DependentUpon>DarkProgressBar.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DarkTextBox.resx">
       <DependentUpon>DarkTextBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DarkKeyBox.resx">
-      <DependentUpon>DarkKeyBox.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

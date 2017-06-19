@@ -1,12 +1,10 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace domi1819.DarkControls
 {
-    public sealed partial class DarkKeyBox : UserControl, IGlowComponent
+    public class DarkKeyBox : BaseControl
     {
-        private bool hover;
         private string text;
 
         public Keys Modifiers { get; private set; }
@@ -15,13 +13,11 @@ namespace domi1819.DarkControls
 
         public string EmptyText { get; set; } = "No Hotkey";
 
-        public DarkKeyBox()
-        {
-            this.InitializeComponent();
-
-            this.DoubleBuffered = true;
-        }
-
+        /// <summary>
+        /// Set the key and modifier pair of this control.
+        /// </summary>
+        /// <param name="modifiers">The modifiers.</param>
+        /// <param name="key">The key scancode.</param>
         public void Set(Keys modifiers, Keys key)
         {
             this.Modifiers = modifiers;
@@ -32,6 +28,8 @@ namespace domi1819.DarkControls
             this.Invalidate();
         }
 
+        /// <summary>Raises the <see cref="E:System.Windows.Forms.Control.PreviewKeyDown" /> event.</summary>
+        /// <param name="e">A <see cref="T:System.Windows.Forms.PreviewKeyDownEventArgs" /> that contains the event data.</param>
         protected override void OnPreviewKeyDown(PreviewKeyDownEventArgs e)
         {
             if (e.Modifiers == Keys.None)
@@ -53,57 +51,13 @@ namespace domi1819.DarkControls
             base.OnPreviewKeyDown(e);
         }
 
+        /// <summary>Raises the <see cref="E:System.Windows.Forms.Control.Paint" /> event.</summary>
+        /// <param name="e">A <see cref="T:System.Windows.Forms.PaintEventArgs" /> that contains the event data. </param>
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-
-            e.Graphics.FillRectangle(DarkPainting.BackgroundBrush(this.hover), this.DisplayRectangle);
+            
             DarkPainting.DrawText(e.Graphics, this.text ?? this.EmptyText, new Rectangle(this.DisplayRectangle.X + 1, this.DisplayRectangle.Y, this.DisplayRectangle.Width - 5, this.DisplayRectangle.Height), this.text == null ? DarkPainting.ForegroundInactive : DarkPainting.Foreground, TextFormatFlags.Left | TextFormatFlags.VerticalCenter);
-            DarkPainting.DrawBorder(e.Graphics, this.DisplayRectangle);
         }
-
-        #region GlowComponent
-
-        public int GlowX => this.Location.X + this.DisplayRectangle.X;
-
-        public int GlowY => this.Location.Y + this.DisplayRectangle.Y;
-
-        public int GlowW => this.DisplayRectangle.Width;
-
-        public int GlowH => this.DisplayRectangle.Height;
-
-        protected override void OnGotFocus(EventArgs e)
-        {
-            base.OnGotFocus(e);
-
-            DarkForm.UpdateGlow(true, this, true);
-        }
-
-        protected override void OnLostFocus(EventArgs e)
-        {
-            base.OnLostFocus(e);
-
-            DarkForm.UpdateGlow(true, this, false);
-        }
-
-        protected override void OnMouseEnter(EventArgs e)
-        {
-            base.OnMouseEnter(e);
-
-            this.hover = true;
-            DarkForm.UpdateGlow(false, this, true);
-            this.Invalidate();
-        }
-
-        protected override void OnMouseLeave(EventArgs e)
-        {
-            base.OnMouseLeave(e);
-
-            this.hover = false;
-            DarkForm.UpdateGlow(false, this, false);
-            this.Invalidate();
-        }
-
-        #endregion
     }
 }

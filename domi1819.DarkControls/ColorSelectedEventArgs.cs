@@ -3,11 +3,11 @@ using System.Drawing;
 
 namespace domi1819.DarkControls
 {
-    public class ColorChangedEventArgs : EventArgs
+    public class ColorSelectedEventArgs : EventArgs
     {
         public Color NewColor { get; }
 
-        public ColorChangedEventArgs(Color newColor)
+        public ColorSelectedEventArgs(Color newColor)
         {
             this.NewColor = newColor;
         }
