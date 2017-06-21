@@ -1,11 +1,15 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace domi1819.DarkControls
 {
+    [DefaultEvent("ColorSelected")]
     public class DarkColorView : BaseControl
     {
+        private const int MinSize = 23;
+
         private static readonly Rectangle PreviewRectangle = new Rectangle(4, 4, 15, 15);
         private readonly ColorDialog colorDialog = new ColorDialog();
 
@@ -53,8 +57,8 @@ namespace domi1819.DarkControls
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-
-            DarkPainting.DrawText(e.Graphics, this.drawText, this.DisplayRectangle);
+            
+            DarkPainting.DrawText(e.Graphics, this.drawText, new Rectangle(MinSize, 0, this.DisplayRectangle.Width - MinSize, MinSize));
 
             e.Graphics.FillRectangle(this.brush, PreviewRectangle);
             DarkPainting.DrawBorder(e.Graphics, PreviewRectangle);

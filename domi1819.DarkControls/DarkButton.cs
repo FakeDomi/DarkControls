@@ -1,9 +1,17 @@
-﻿using System.Windows.Forms;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+using domi1819.DarkControls.Designer;
 
 namespace domi1819.DarkControls
 {
+    [Designer(typeof(ButtonDesigner))]
     public class DarkButton : BaseControl, IButtonControl
     {
+        public DarkButton()
+        {
+            this.SetStyle(ControlStyles.StandardClick, true);
+        }
+
         /// <summary>Raises the <see cref="E:System.Windows.Forms.Control.Paint" /> event.</summary>
         /// <param name="e">A <see cref="T:System.Windows.Forms.PaintEventArgs" /> that contains the event data. </param>
         protected override void OnPaint(PaintEventArgs e)

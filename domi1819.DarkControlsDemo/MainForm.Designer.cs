@@ -30,59 +30,61 @@ namespace domi1819.DarkControlsDemo
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.darkTextbox23 = new domi1819.DarkControls.DarkTextbox2();
-            this.darkTextbox21 = new domi1819.DarkControls.DarkTextbox2();
+            this.coloredBox1 = new domi1819.DarkControls.ColoredBox();
+            this.darkColorView1 = new domi1819.DarkControls.DarkColorView();
+            this.darkColorView2 = new domi1819.DarkControls.DarkColorView();
             this.SuspendLayout();
             // 
-            // textBox1
+            // coloredBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(116, 208);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(109, 20);
-            this.textBox1.TabIndex = 1;
-            this.textBox1.Text = "darkTextbox21";
+            this.coloredBox1.BorderColor = System.Drawing.Color.Gold;
+            this.coloredBox1.Location = new System.Drawing.Point(12, 12);
+            this.coloredBox1.Name = "coloredBox1";
+            this.coloredBox1.Size = new System.Drawing.Size(114, 52);
+            this.coloredBox1.TabIndex = 0;
+            this.coloredBox1.Text = "coloredBox1";
             // 
-            // darkTextbox23
+            // darkColorView1
             // 
-            this.darkTextbox23.Location = new System.Drawing.Point(116, 234);
-            this.darkTextbox23.MinimumSize = new System.Drawing.Size(20, 20);
-            this.darkTextbox23.Name = "darkTextbox23";
-            this.darkTextbox23.Size = new System.Drawing.Size(109, 20);
-            this.darkTextbox23.TabIndex = 3;
-            this.darkTextbox23.Text = "darkTextbox23";
-            this.darkTextbox23.UseSystemPasswordChar = false;
+            this.darkColorView1.Color = System.Drawing.Color.Gray;
+            this.darkColorView1.CustomText = "Filling: ";
+            this.darkColorView1.Location = new System.Drawing.Point(132, 12);
+            this.darkColorView1.Name = "darkColorView1";
+            this.darkColorView1.Size = new System.Drawing.Size(166, 23);
+            this.darkColorView1.TabIndex = 1;
+            this.darkColorView1.Text = "darkColorView1";
+            this.darkColorView1.ColorSelected += new System.EventHandler<domi1819.DarkControls.ColorSelectedEventArgs>(this.UpdateColors);
             // 
-            // darkTextbox21
+            // darkColorView2
             // 
-            this.darkTextbox21.Location = new System.Drawing.Point(116, 260);
-            this.darkTextbox21.MinimumSize = new System.Drawing.Size(20, 20);
-            this.darkTextbox21.Name = "darkTextbox21";
-            this.darkTextbox21.ReadOnly = true;
-            this.darkTextbox21.Size = new System.Drawing.Size(109, 20);
-            this.darkTextbox21.TabIndex = 4;
-            this.darkTextbox21.Text = "darkTextbox21";
-            this.darkTextbox21.UseSystemPasswordChar = false;
+            this.darkColorView2.Color = System.Drawing.Color.Gold;
+            this.darkColorView2.CustomText = "Border: ";
+            this.darkColorView2.Location = new System.Drawing.Point(132, 41);
+            this.darkColorView2.Name = "darkColorView2";
+            this.darkColorView2.Size = new System.Drawing.Size(166, 23);
+            this.darkColorView2.TabIndex = 2;
+            this.darkColorView2.Text = "darkColorView2";
+            this.darkColorView2.ColorSelected += new System.EventHandler<domi1819.DarkControls.ColorSelectedEventArgs>(this.UpdateColors);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(689, 528);
-            this.Controls.Add(this.darkTextbox21);
-            this.Controls.Add(this.darkTextbox23);
-            this.Controls.Add(this.textBox1);
+            this.ClientSize = new System.Drawing.Size(675, 433);
+            this.Controls.Add(this.darkColorView2);
+            this.Controls.Add(this.darkColorView1);
+            this.Controls.Add(this.coloredBox1);
             this.Name = "MainForm";
             this.Text = "MainForm";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.TextBox textBox1;
-        private DarkControls.DarkTextbox2 darkTextbox23;
-        private DarkControls.DarkTextbox2 darkTextbox21;
+
+        private DarkControls.ColoredBox coloredBox1;
+        private DarkControls.DarkColorView darkColorView1;
+        private DarkControls.DarkColorView darkColorView2;
     }
 }
 

@@ -73,10 +73,11 @@
     <Compile Include="DarkTextBox.designer.cs">
       <DependentUpon>DarkTextBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="DarkTextbox2.cs">
+    <Compile Include="DarkTextBoxNew.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="TextBoxDesigner.cs" />
+    <Compile Include="Designer\ButtonDesigner.cs" />
+    <Compile Include="Designer\TextBoxDesigner.cs" />
     <Compile Include="HexConversion.cs" />
     <Compile Include="IGlowComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

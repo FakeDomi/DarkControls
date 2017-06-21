@@ -2,28 +2,18 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using domi1819.DarkControls.Designer;
 
 namespace domi1819.DarkControls
 {
     [Designer(typeof(TextBoxDesigner))]
-    public class DarkTextbox2 : BaseControl
+    public class DarkTextBoxNew : BaseControl
     {
         private const int TextBoxHeight = 13;
         private const int TextBoxPadding = 3;
 
-        private readonly TextBox textBox = new TextBox { BorderStyle = BorderStyle.None, Location = new Point(TextBoxPadding, TextBoxPadding), Size = new Size(94, TextBoxHeight) };
-
-        /// <summary>Gets or sets the background color for the control.</summary>
-        /// <returns>A <see cref="T:System.Drawing.Color" /> that represents the background color of the control. The default is the value of the <see cref="P:System.Windows.Forms.Control.DefaultBackColor" /> property.</returns>
-        /// <PermissionSet>
-        ///   <IPermission class="System.Security.Permissions.FileIOPermission, mscorlib, Version=2.0.3600.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" version="1" Unrestricted="true" />
-        /// </PermissionSet>
-        public override Color BackColor
-        {
-            get => this.textBox.BackColor;
-            set => this.textBox.BackColor = value;
-        }
-
+        private readonly TextBox textBox = new TextBox { BorderStyle = BorderStyle.None, Location = new Point(TextBoxPadding, TextBoxPadding), Size = new Size(94, TextBoxHeight), BackColor = DarkPainting.Control, ForeColor = DarkPainting.Foreground };
+        
         /// <summary>Gets or sets the foreground color of the control.</summary>
         /// <returns>The foreground <see cref="T:System.Drawing.Color" /> of the control. The default is the value of the <see cref="P:System.Windows.Forms.Control.DefaultForeColor" /> property.</returns>
         /// <PermissionSet>
@@ -65,7 +55,7 @@ namespace domi1819.DarkControls
         /// <returns>An ordered pair of type <see cref="T:System.Drawing.Size" /> representing the width and height of a rectangle.</returns>
         public override Size MinimumSize => new Size(20, 20);
 
-        public DarkTextbox2()
+        public DarkTextBoxNew()
         {
             this.SuspendLayout();
 
@@ -73,10 +63,7 @@ namespace domi1819.DarkControls
 
             this.ResumeLayout(false);
             this.PerformLayout();
-
-            this.textBox.BackColor = DarkPainting.Control;
-            this.textBox.ForeColor = DarkPainting.Foreground;
-
+            
             this.textBox.MouseEnter += (sender, args) => { this.OnMouseEnter(args); };
             this.textBox.MouseLeave += (sender, args) => { this.OnMouseLeave(args); };
 
@@ -100,6 +87,31 @@ namespace domi1819.DarkControls
         protected override void SetBoundsCore(int x, int y, int width, int height, BoundsSpecified specified)
         {
             base.SetBoundsCore(x, y, width, 20, specified);
+        }
+
+        /// <summary>Raises the <see cref="E:System.Windows.Forms.Control.MouseEnter" /> event.</summary>
+        /// <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data. </param>
+        protected override void OnMouseEnter(EventArgs e)
+        {
+            this.textBox.BackColor = DarkPainting.ControlHighlight;
+
+            base.OnMouseEnter(e);
+        }
+
+        /// <summary>Raises the <see cref="E:System.Windows.Forms.Control.MouseLeave" /> event.</summary>
+        /// <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data. </param>
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            this.textBox.BackColor = DarkPainting.Control;
+
+            base.OnMouseLeave(e);
+        }
+
+        /// <summary>Raises the <see cref="E:System.Windows.Forms.Control.Enter" /> event.</summary>
+        /// <param name="e">An <see cref="T:System.EventArgs" /> that contains the event data. </param>
+        protected override void OnEnter(EventArgs e)
+        {
+            this.textBox.Focus();
         }
     }
 }
