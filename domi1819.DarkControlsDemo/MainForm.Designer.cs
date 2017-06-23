@@ -33,6 +33,7 @@ namespace domi1819.DarkControlsDemo
             this.coloredBox1 = new domi1819.DarkControls.ColoredBox();
             this.darkColorView1 = new domi1819.DarkControls.DarkColorView();
             this.darkColorView2 = new domi1819.DarkControls.DarkColorView();
+            this.darkColorView3 = new domi1819.DarkControls.DarkColorView();
             this.SuspendLayout();
             // 
             // coloredBox1
@@ -48,9 +49,10 @@ namespace domi1819.DarkControlsDemo
             // 
             this.darkColorView1.Color = System.Drawing.Color.Gray;
             this.darkColorView1.CustomText = "Filling: ";
+            this.darkColorView1.ForceCenter = false;
             this.darkColorView1.Location = new System.Drawing.Point(132, 12);
             this.darkColorView1.Name = "darkColorView1";
-            this.darkColorView1.Size = new System.Drawing.Size(166, 23);
+            this.darkColorView1.Size = new System.Drawing.Size(122, 23);
             this.darkColorView1.TabIndex = 1;
             this.darkColorView1.Text = "darkColorView1";
             this.darkColorView1.ColorSelected += new System.EventHandler<domi1819.DarkControls.ColorSelectedEventArgs>(this.UpdateColors);
@@ -59,18 +61,32 @@ namespace domi1819.DarkControlsDemo
             // 
             this.darkColorView2.Color = System.Drawing.Color.Gold;
             this.darkColorView2.CustomText = "Border: ";
+            this.darkColorView2.ForceCenter = false;
             this.darkColorView2.Location = new System.Drawing.Point(132, 41);
             this.darkColorView2.Name = "darkColorView2";
-            this.darkColorView2.Size = new System.Drawing.Size(166, 23);
+            this.darkColorView2.Size = new System.Drawing.Size(122, 23);
             this.darkColorView2.TabIndex = 2;
             this.darkColorView2.Text = "darkColorView2";
             this.darkColorView2.ColorSelected += new System.EventHandler<domi1819.DarkControls.ColorSelectedEventArgs>(this.UpdateColors);
+            // 
+            // darkColorView3
+            // 
+            this.darkColorView3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(16)))), ((int)(((byte)(48)))), ((int)(((byte)(128)))));
+            this.darkColorView3.CustomText = "Theme Color: ";
+            this.darkColorView3.ForceCenter = true;
+            this.darkColorView3.Location = new System.Drawing.Point(12, 70);
+            this.darkColorView3.Name = "darkColorView3";
+            this.darkColorView3.Size = new System.Drawing.Size(242, 23);
+            this.darkColorView3.TabIndex = 3;
+            this.darkColorView3.Text = "darkColorView3";
+            this.darkColorView3.ColorSelected += new System.EventHandler<domi1819.DarkControls.ColorSelectedEventArgs>(this.darkColorView3_ColorSelected);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(675, 433);
+            this.Controls.Add(this.darkColorView3);
             this.Controls.Add(this.darkColorView2);
             this.Controls.Add(this.darkColorView1);
             this.Controls.Add(this.coloredBox1);
@@ -85,6 +101,7 @@ namespace domi1819.DarkControlsDemo
         private DarkControls.ColoredBox coloredBox1;
         private DarkControls.DarkColorView darkColorView1;
         private DarkControls.DarkColorView darkColorView2;
+        private DarkControls.DarkColorView darkColorView3;
     }
 }
 

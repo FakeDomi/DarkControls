@@ -2,13 +2,16 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using domi1819.DarkControls.Designer;
 
 namespace domi1819.DarkControls
 {
     [DefaultEvent("ColorSelected")]
+    [Designer(typeof(ColorViewDesigner))]
     public class DarkColorView : BaseControl
     {
         private const int MinSize = 23;
+        private const int CenterOffset = 20;
 
         private static readonly Rectangle PreviewRectangle = new Rectangle(4, 4, 15, 15);
         private readonly ColorDialog colorDialog = new ColorDialog();
@@ -17,6 +20,8 @@ namespace domi1819.DarkControls
         private Brush brush;
 
         private string customText, drawText;
+
+        private bool forceCenter;
 
         public Color Color
         {
@@ -27,7 +32,7 @@ namespace domi1819.DarkControls
                 this.brush = new SolidBrush(value);
                 this.colorDialog.Color = value;
 
-                this.UpdateText();
+                this.UpdateTextAndInvalidate();
             }
         }
 
@@ -37,13 +42,23 @@ namespace domi1819.DarkControls
             set
             {
                 this.customText = value;
-                this.UpdateText();
+                this.UpdateTextAndInvalidate();
+            }
+        }
+
+        public bool ForceCenter
+        {
+            get => this.forceCenter;
+            set
+            {
+                this.forceCenter = value;
+                this.Invalidate();
             }
         }
 
         /// <summary>Gets the default size of the control.</summary>
         /// <returns>The default <see cref="T:System.Drawing.Size" /> of the control.</returns>
-        protected override Size DefaultSize => new Size(125, 23);
+        protected override Size DefaultSize => new Size(125, MinSize);
 
         public event EventHandler<ColorSelectedEventArgs> ColorSelected;
 
@@ -57,8 +72,10 @@ namespace domi1819.DarkControls
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            
-            DarkPainting.DrawText(e.Graphics, this.drawText, new Rectangle(MinSize, 0, this.DisplayRectangle.Width - MinSize, MinSize));
+
+            int offset = this.forceCenter ? 0 : CenterOffset;
+
+            DarkPainting.DrawText(e.Graphics, this.drawText, new Rectangle(offset, 0, this.DisplayRectangle.Width - offset, MinSize));
 
             e.Graphics.FillRectangle(this.brush, PreviewRectangle);
             DarkPainting.DrawBorder(e.Graphics, PreviewRectangle);
@@ -75,7 +92,18 @@ namespace domi1819.DarkControls
             }
         }
 
-        private void UpdateText()
+        /// <summary>Performs the work of setting the specified bounds of this control.</summary>
+        /// <param name="x">The new <see cref="P:System.Windows.Forms.Control.Left" /> property value of the control. </param>
+        /// <param name="y">The new <see cref="P:System.Windows.Forms.Control.Top" /> property value of the control. </param>
+        /// <param name="width">The new <see cref="P:System.Windows.Forms.Control.Width" /> property value of the control. </param>
+        /// <param name="height">The new <see cref="P:System.Windows.Forms.Control.Height" /> property value of the control. </param>
+        /// <param name="specified">A bitwise combination of the <see cref="T:System.Windows.Forms.BoundsSpecified" /> values. </param>
+        protected override void SetBoundsCore(int x, int y, int width, int height, BoundsSpecified specified)
+        {
+            base.SetBoundsCore(x, y, width, MinSize, specified);
+        }
+
+        private void UpdateTextAndInvalidate()
         {
             this.drawText = $"{this.customText ?? ""}{this.color.ToHexString()}";
             this.Invalidate();

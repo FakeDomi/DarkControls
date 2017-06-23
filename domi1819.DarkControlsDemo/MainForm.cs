@@ -16,5 +16,10 @@ namespace domi1819.DarkControlsDemo
             this.coloredBox1.BackColor = this.darkColorView1.Color;
             this.coloredBox1.BorderColor = this.darkColorView2.Color;
         }
+
+        private void darkColorView3_ColorSelected(object sender, ColorSelectedEventArgs e)
+        {
+            DarkPainting.StrongColor = e.NewColor;
+        }
     }
 }

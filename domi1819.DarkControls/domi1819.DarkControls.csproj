@@ -68,15 +68,11 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DarkTextBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DarkTextBox.designer.cs">
-      <DependentUpon>DarkTextBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DarkTextBoxNew.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Designer\ButtonDesigner.cs" />
+    <Compile Include="Designer\ColorViewDesigner.cs" />
+    <Compile Include="Designer\FixedHeightDesigner.cs" />
     <Compile Include="Designer\TextBoxDesigner.cs" />
     <Compile Include="HexConversion.cs" />
     <Compile Include="IGlowComponent.cs" />
@@ -84,11 +80,6 @@
     <Compile Include="ColoredBox.cs">
       <SubType>Component</SubType>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="DarkTextBox.resx">
-      <DependentUpon>DarkTextBox.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
