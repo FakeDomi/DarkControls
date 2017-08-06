@@ -16,14 +16,12 @@ namespace domi1819.DarkControls
         /// </summary>
         public bool DisableGlow { get; set; }
 
-        public DarkForm()
-        {
-            this.BackColor = DarkPainting.Workspace;
-            this.ForeColor = DarkPainting.Foreground;
+        protected override bool DoubleBuffered => true;
 
-            this.DoubleBuffered = true;
-        }
+        public override Color BackColor => DarkPainting.Workspace;
 
+        public override Color ForeColor => DarkPainting.Foreground;
+        
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
