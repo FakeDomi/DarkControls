@@ -44,7 +44,7 @@ namespace domi1819.DarkControls
             Foreground = Color.FromArgb(241, 241, 241);
             ForegroundInactive = Color.FromArgb(96, 96, 100);
 
-            StrongColor = Color.FromArgb(16, 48, 128);
+            StrongColor = Color.FromArgb(0, 128, 192);
 
             ForegroundBrush = new SolidBrush(Foreground);
         }
