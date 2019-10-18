@@ -1,6 +1,8 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
+// ReSharper disable MemberCanBeProtected.Global
+// ReSharper disable MemberCanBePrivate.Global
 namespace domi1819.DarkControls
 {
     /// <summary>
@@ -14,14 +16,20 @@ namespace domi1819.DarkControls
         /// <summary>
         /// Whether glow for focused/hovered components should be disabled.
         /// </summary>
+        // ReSharper disable once UnusedAutoPropertyAccessor.Global
         public bool DisableGlow { get; set; }
-
-        protected override bool DoubleBuffered => true;
-
+        
         public override Color BackColor => DarkPainting.Workspace;
 
         public override Color ForeColor => DarkPainting.Foreground;
-        
+
+        protected sealed override bool DoubleBuffered { get => base.DoubleBuffered; set => base.DoubleBuffered = value; }
+
+        public DarkForm()
+        {
+            this.DoubleBuffered = true;
+        }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);

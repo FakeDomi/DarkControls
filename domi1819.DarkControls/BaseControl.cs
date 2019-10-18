@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
+// ReSharper disable MemberCanBePrivate.Global
 namespace domi1819.DarkControls
 {
     public abstract class BaseControl : Control, IGlowComponent
@@ -18,7 +19,7 @@ namespace domi1819.DarkControls
         public int GlowY => this.Location.Y + this.DisplayRectangle.Y;
 
         /// <summary>
-        /// The witdh of the glow box.
+        /// The width of the glow box.
         /// </summary>
         public int GlowW => this.DisplayRectangle.Width;
 
@@ -29,16 +30,16 @@ namespace domi1819.DarkControls
 
         /// <summary>Gets or sets a value indicating whether this control should redraw its surface using a secondary buffer to reduce or prevent flicker.</summary>
         /// <returns>true if the surface of the control should be drawn using double buffering; otherwise, false.</returns>
-        protected override bool DoubleBuffered => true;
+        protected sealed override bool DoubleBuffered { get => base.DoubleBuffered; set => base.DoubleBuffered = value; }
 
-        protected BaseControl()
+        protected BaseControl() : this(true)
         {
-            this.SetStyle(ControlStyles.UserMouse, true);
         }
 
         protected BaseControl(bool userMouseFlag)
         {
             this.SetStyle(ControlStyles.UserMouse, userMouseFlag);
+            this.DoubleBuffered = true;
         }
 
         /// <summary>Raises the <see cref="E:System.Windows.Forms.Control.GotFocus" /> event.</summary>
